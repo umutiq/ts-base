@@ -1,9 +1,11 @@
 {
   "name": "typescript-base",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "build/app.js",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "start": "node build/app.js",
     "dev": "nodemon",
     "lint-fix": "eslint --fix src"
   },
