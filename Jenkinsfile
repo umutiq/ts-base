@@ -10,6 +10,7 @@ pipeline {
     stage('Log') {
       steps {
         sh 'npm --version'
+        tool 'node'
       }
     }
 
