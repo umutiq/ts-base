@@ -7,9 +7,12 @@ pipeline {
       }
     }
 
-    stage('') {
+    stage('error') {
       steps {
-        nvm(version: '16.15')
+        nvm(version: '16.15', nvmInstallURL: 'https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh') {
+          sh 'npm install'
+        }
+
       }
     }
 
