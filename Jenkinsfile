@@ -8,21 +8,10 @@ pipeline {
     }
 
     stage('NVM') {
-      parallel {
-        stage('NVM') {
-          steps {
-            sh '''export NVM_DIR="$HOME/.nvm"
+      steps {
+        sh '''export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" && nvm install --lts &&
-nvm use --lts'''
-          }
-        }
-
-        stage('npm install') {
-          steps {
-            sh 'npm install'
-          }
-        }
-
+nvm use --lts  && npm install'''
       }
     }
 
