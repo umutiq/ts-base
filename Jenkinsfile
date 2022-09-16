@@ -7,5 +7,12 @@ pipeline {
       }
     }
 
+    stage('') {
+      steps {
+        sh '''nvm install --lts &&
+nvm use --lts'''
+      }
+    }
+
   }
 }
