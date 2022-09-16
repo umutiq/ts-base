@@ -7,11 +7,15 @@ pipeline {
       }
     }
 
-    stage('NVM') {
+    stage('') {
       steps {
-        sh '''export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" && nvm install --lts &&
-nvm use --lts  && npm install'''
+        nvm(version: '16.15')
+      }
+    }
+
+    stage('npm') {
+      steps {
+        sh 'npm install'
       }
     }
 
