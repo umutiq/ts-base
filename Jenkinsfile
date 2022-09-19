@@ -4,19 +4,9 @@ pipeline {
         nodejs "node"
     }
     stages {
-        stage('Build') {
+        stage('Clone Git') {
             steps {
-                echo 'Building...'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
+                git(url: 'https://github.com/umutiq/ts-base.git', branch: 'dev', credentialsId: 'jenkins')
             }
         }
     }
