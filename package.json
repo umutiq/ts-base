@@ -32,6 +32,7 @@
   "dependencies": {
     "@sinclair/typebox": "^0.24.41",
     "env-schema": "^5.0.0",
+    "fastify": "^4.6.0",
     "zod": "^3.19.1"
   },
   "lint-staged": {
