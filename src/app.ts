@@ -1,6 +1,6 @@
 import fastify, { FastifyError } from 'fastify';
 import * as config from './config';
-import userRoute from './modules/user';
+import user from './modules/user';
 
 const app = fastify();
 
@@ -20,7 +20,7 @@ async function init(): Promise<void> {
   await app.register(
     async (instance, opts, done) => {
       // @ts-expect-error
-      await instance.register(userRoute, { prefix: '/user' });
+      await instance.register(user, { prefix: '/user' });
       done();
     },
     { prefix: '/api' },
