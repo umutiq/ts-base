@@ -1,6 +1,8 @@
 import fastify, { FastifyError } from 'fastify';
+import { connect } from './utils/db';
 import * as config from './config';
 import user from './modules/user';
+import { UserModel } from './modules/user/model';
 
 const app = fastify();
 
@@ -25,6 +27,8 @@ async function init(): Promise<void> {
     },
     { prefix: '/api' },
   );
+  await connect();
+  await UserModel.create({ name: 'test' });
 }
 
 init().catch((err: FastifyError) => {
