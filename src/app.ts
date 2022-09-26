@@ -21,7 +21,7 @@ async function init(): Promise<void> {
   );
   await app.register(
     async (instance, opts, done) => {
-      await instance.register(user);
+      await instance.register(user, { prefix: '/users' });
       done();
     },
     { prefix: '/api' },

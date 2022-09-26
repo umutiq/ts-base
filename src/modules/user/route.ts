@@ -1,15 +1,12 @@
-import { FastifyInstance, RouteOptions } from 'fastify';
+import { FastifyInstance, FastifyPluginOptions } from 'fastify';
 import Controller from './controller';
 
-async function routes(fastify: FastifyInstance, options: RouteOptions): Promise<void> {
-  await fastify.register(
-    (instance, opts, done) => {
-      instance.get('/', Controller.getUsers);
-      instance.get('/:id', Controller.getUser);
-      done();
-    },
-    { prefix: '/users' },
-  );
+async function routes(fastify: FastifyInstance, options: FastifyPluginOptions): Promise<void> {
+  await fastify.register((instance, opts, done) => {
+    instance.get('/', Controller.getUsers);
+    instance.get('/:id', Controller.getUser);
+    done();
+  });
 }
 
 export default routes;
