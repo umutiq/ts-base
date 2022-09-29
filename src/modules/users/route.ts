@@ -8,5 +8,4 @@ async function routes(fastify: FastifyInstance, options: FastifyPluginOptions): 
     done();
   });
 }
-
 export default routes;

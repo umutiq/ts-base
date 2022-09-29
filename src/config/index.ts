@@ -1,2 +1,7 @@
-export { default as app } from './app.config';
-export { default as db } from './db.config';
+import app from './app.config';
+import db from './db.config';
+
+export default {
+  app,
+  db,
+};

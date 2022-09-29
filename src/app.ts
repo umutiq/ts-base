@@ -1,8 +1,8 @@
 import fastify, { FastifyError } from 'fastify';
 import { connect } from './utils/db';
-import * as config from './config';
-import user from './modules/user';
-import { UserModel } from './modules/user/model';
+import config from './config';
+import autoLoad from '@fastify/autoload';
+import { join } from 'path';
 import { logAndExit } from './utils/errors';
 
 const app = fastify();
@@ -19,15 +19,13 @@ async function init(): Promise<void> {
       console.log(`Server listening at ${address}`);
     },
   );
-  await app.register(
-    async (instance, opts, done) => {
-      await instance.register(user, { prefix: '/users' });
-      done();
+  await app.register(autoLoad, {
+    dir: join(__dirname, 'modules'),
+    options: {
+      prefix: '/api',
     },
-    { prefix: '/api' },
-  );
+  });
   await connect();
-  await UserModel.create({ name: 'test' });
 }
 
 init().catch((err: FastifyError) => {
