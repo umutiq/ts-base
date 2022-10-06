@@ -7,13 +7,13 @@ import { logAndExit } from './utils/errors';
 
 const app = fastify();
 
-async function init(): Promise<void> {
-  await app.listen(
+(async function () {
+  app.listen(
     {
       port: config.app.PORT,
     },
     (err, address) => {
-      if (err !== null) {
+      if (err instanceof Error) {
         logAndExit(err);
       }
       console.log(`Server listening at ${address}`);
@@ -26,8 +26,6 @@ async function init(): Promise<void> {
     },
   });
   await connect();
-}
-
-init().catch((err: FastifyError) => {
+})().catch((err: FastifyError) => {
   logAndExit(err);
 });

@@ -7,6 +7,12 @@ type GetUserRequest = FastifyRequest<{
   };
 }>;
 
+type CreateUserRequest = FastifyRequest<{
+  Body: {
+    name: string;
+  };
+}>;
+
 async function getUser(request: GetUserRequest, reply: FastifyReply): Promise<void> {
   const { id } = request.params;
   const user = await UserService.getUser(id);
@@ -18,7 +24,13 @@ async function getUsers(request: FastifyRequest, reply: FastifyReply): Promise<v
   await reply.send({ users });
 }
 
+async function createUser(request: CreateUserRequest, reply: FastifyReply): Promise<void> {
+  const user = await UserService.createUser(request.body);
+  await reply.send({ user });
+}
+
 export default {
+  createUser,
   getUser,
   getUsers,
 };
